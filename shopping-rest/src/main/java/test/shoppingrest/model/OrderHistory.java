@@ -2,7 +2,6 @@ package test.shoppingrest.model;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OrderHistory {
     private List<Product> products;

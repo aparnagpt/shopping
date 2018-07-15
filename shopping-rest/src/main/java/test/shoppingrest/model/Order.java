@@ -39,7 +39,7 @@ public class Order {
 
 
     public void setProductId(List<Integer> productId) {
-         this.productId = productId;
+        this.productId = productId;
     }
 
 }

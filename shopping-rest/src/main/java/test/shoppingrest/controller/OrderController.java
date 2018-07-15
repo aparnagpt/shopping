@@ -23,7 +23,7 @@ public class OrderController {
 
     @PostMapping("/order")
     public ResponseEntity<Void> createOrder(@RequestBody Order order) {
-       Order createdOrder = orderService.createOrder(order);
+        Order createdOrder = orderService.createOrder(order);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
                 "/{id}").buildAndExpand(createdOrder.getOrderId()).toUri();
 
