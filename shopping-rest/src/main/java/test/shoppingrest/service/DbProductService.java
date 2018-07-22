@@ -13,7 +13,7 @@ import java.util.List;
 public class DbProductService {
 
     public List<Product> getAllProducts() {
-        return DbUtil.mySqlJdbcTemplate().query("select * from Product", this::mapToProduct);
+        return DbUtil.mySqlJdbcTemplate().query("select id, name, amount from Product", this::mapToMinimalProduct);
     }
 
     public Product getProductDetail(int id) {
@@ -22,6 +22,10 @@ public class DbProductService {
 
     public List<Product> getProducts(List<String> ids) {
         return new NamedParameterJdbcTemplate(DbUtil.mySqlJdbcTemplate()).query("select * from Product where id in (:ids)", Collections.singletonMap("ids", ids), this::mapToProduct);
+    }
+
+    private Product mapToMinimalProduct(ResultSet rs, int i) throws SQLException {
+        return new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("amount"));
     }
 
     private Product mapToProduct(ResultSet rs, int i) throws SQLException {
